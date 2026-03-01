@@ -13,7 +13,11 @@ spec:
     spec:
       containers:
         # I'm using a pre-built image for this example
-        - image: image-registry.openshift-image-registry.svc:5000/tienhung17092004-dev/hello-serverless-build
+        - image: image-registry.openshift-image-registry.svc:5000/tienhung17092004-dev/hello-serverless-build:latest
           env:
             - name: TARGET
               value: "K8s Master"
+            - name: "APP_FILE"
+              value: "app.py"
+          ports:
+            - containerPort: 8080
