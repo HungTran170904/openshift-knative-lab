@@ -1,0 +1,19 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hello-python-serverless
+  namespace: your-project-name # Change this to your namespace
+spec:
+  template:
+    metadata:
+      annotations:
+        # This tells OpenShift to scale to 0 when no one is visiting
+        autoscaling.knative.dev/min-scale: "0"
+        autoscaling.knative.dev/max-scale: "5"
+    spec:
+      containers:
+        # I'm using a pre-built image for this example
+        - image: quay.io/rhdevelopers/knative-tutorial-greeter:python
+          env:
+            - name: TARGET
+              value: "K8s Master"
