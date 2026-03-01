@@ -2,7 +2,7 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: hello-python-serverless
-  namespace: your-project-name # Change this to your namespace
+  namespace: tienhung17092004-dev
 spec:
   template:
     metadata:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         # I'm using a pre-built image for this example
-        - image: quay.io/rhdevelopers/knative-tutorial-greeter:python
+        - image: image-registry.openshift-image-registry.svc:5000/tienhung17092004-dev/hello-serverless-build
           env:
             - name: TARGET
               value: "K8s Master"
